@@ -1,0 +1,45 @@
+﻿@model ProyectoTiquiciaRecicla.Models.TBL_Anuncio
+
+@{
+    ViewData["Title"] = "Crear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mx-0">
+    <br />
+    <h3><a asp-action="Mantenimiento" class="btn-outline-primary"><i class="bi bi-chevron-left mx-2 "></i></a><i class="bi bi-megaphone"></i> Nuevo anuncio</h3>
+    <hr />
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Crear">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CH_Titulo" class="control-label"></label>
+                <input asp-for="CH_Titulo" class="form-control" />
+                <span asp-validation-for="CH_Titulo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+          
+                <label asp-for="IMG_Banner" class="control-label"></label><br />
+                <label>Ingrese un url</label><br />
+                <input asp-for="IMG_Banner" class="form-control" />
+                <span asp-validation-for="IMG_Banner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Descripcion" class="control-label"></label>
+                <input asp-for="CH_Descripcion" class="form-control" />
+                <span asp-validation-for="CH_Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CAT_Centro_De_AcopioId" class="control-label"></label>
+                <select asp-for="CAT_Centro_De_AcopioId" class ="form-control" asp-items="ViewBag.CAT_Centro_De_AcopioId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

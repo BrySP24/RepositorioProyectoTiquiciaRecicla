@@ -1,0 +1,30 @@
+﻿@model ProyectoTiquiciaRecicla.Models.CAT_Provincia
+
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mx-0">
+    <br />
+    <h2><a asp-action="Mantenimiento" class="btn-outline-primary"><i class="bi bi-chevron-left mx-2 "></i></a><i class="bi bi-signpost"></i> Editar provincia</h2>
+    <hr />
+  </div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Editar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="CH_Nombre" class="control-label"></label>
+                <input asp-for="CH_Nombre" class="form-control" />
+                <span asp-validation-for="CH_Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

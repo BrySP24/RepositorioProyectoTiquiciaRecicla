@@ -1,0 +1,53 @@
+﻿@model ProyectoTiquiciaRecicla.Models.TBL_Evento
+
+@{
+    ViewData["Title"] = "Crear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="mx-0">
+    <br />
+    <h3><a asp-action="Mantenimiento" class="btn-outline-primary"><i class="bi bi-chevron-left mx-2 "></i></a><i class="bi bi-calendar2-event"></i> Nuevo evento</h3>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Crear">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CH_Nombre" class="control-label"></label>
+                <input asp-for="CH_Nombre" class="form-control" />
+                <span asp-validation-for="CH_Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Descripcion" class="control-label"></label>
+                <input asp-for="CH_Descripcion" class="form-control" />
+                <span asp-validation-for="CH_Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DTI_Inicio" class="control-label"></label>
+                <input asp-for="DTI_Inicio" class="form-control" />
+                <span asp-validation-for="DTI_Inicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DTI_Fin" class="control-label"></label>
+                <input asp-for="DTI_Fin" class="form-control" />
+                <span asp-validation-for="DTI_Fin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Premio" class="control-label"></label>
+                <input asp-for="CH_Premio" class="form-control" />
+                <span asp-validation-for="CH_Premio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CAT_Empresa_RecolectoraId" class="control-label"></label>
+                <select asp-for="CAT_Empresa_RecolectoraId" class ="form-control" asp-items="ViewBag.CAT_Empresa_RecolectoraId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

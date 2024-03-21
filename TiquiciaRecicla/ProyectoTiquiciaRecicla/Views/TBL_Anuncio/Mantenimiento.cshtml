@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ProyectoTiquiciaRecicla.Models.TBL_Anuncio>
+
+@{
+    ViewData["Title"] = "Mantenimiento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="mx-1">
+    <br />
+    <h2><i class="bi bi-megaphone"></i> Mantenimiento de anuncios</h2>
+    <hr />
+    <p>
+        <a asp-action="Crear" class="btn btn-success "> <i class="bi bi-plus-circle"></i> Agregar un anuncio</a>
+    </p>
+</div>
+<table border="2" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IMG_Banner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CH_Titulo)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.IMG_Banner)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.CH_Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CAT_Centros_De_Acopio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @*Esta es la imagen del anuncio*@
+                <td class="align">
+                    <img class="rounded" src="@item.IMG_Banner" alt=" @item.CH_Titulo" style="max-width: 175px" />
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CH_Titulo)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.IMG_Banner)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.CH_Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CAT_Centros_De_Acopio.CH_Nombre)
+            </td>
+                <td class="align-middle">
+                    <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-primary  btn-sm"><i class="bi bi-pencil"></i> Editar</a> |
+
+                    <a asp-action="Detalles" asp-route-id="@item.Id " class="btn btn-success  btn-sm"><i class="bi bi-eye"></i> Detalles</a> |
+
+                    <a asp-action="Eliminar" asp-route-id="@item.Id " class="btn btn-danger  btn-sm"> <i class="bi bi-trash-fill"></i> Eliminar</a>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

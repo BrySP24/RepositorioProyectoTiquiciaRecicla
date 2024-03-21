@@ -1,0 +1,47 @@
+﻿@model ProyectoTiquiciaRecicla.Models.TBL_Recibo_De_Reciclaje
+
+@{
+    ViewData["Title"] = "Crear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mx-0">
+    <br />
+    <h3><a asp-action="Mantenimiento" class="btn-outline-primary"><i class="bi bi-chevron-left mx-2 "></i></a><i class="bi bi-ticket-detailed"></i> Nuevo recibo de reciclaje</h3>
+    <hr />
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Crear">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DTI_Fecha_Hora" class="control-label"></label>
+                <input asp-for="DTI_Fecha_Hora" class="form-control" />
+                <span asp-validation-for="DTI_Fecha_Hora" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DEC_Peso" class="control-label"></label>
+                <input asp-for="DEC_Peso" class="form-control" />
+                <span asp-validation-for="DEC_Peso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CAT_Tipo_De_MaterialId" class="control-label"></label>
+                <select asp-for="CAT_Tipo_De_MaterialId" class ="form-control" asp-items="ViewBag.CAT_Tipo_De_MaterialId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CAT_Centro_De_AcopioId" class="control-label"></label>
+                <select asp-for="CAT_Centro_De_AcopioId" class ="form-control" asp-items="ViewBag.CAT_Centro_De_AcopioId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TBL_UsuarioId" class="control-label"></label>
+                <select asp-for="TBL_UsuarioId" class ="form-control" asp-items="ViewBag.TBL_UsuarioId"></select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

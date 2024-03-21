@@ -1,0 +1,62 @@
+﻿@model ProyectoTiquiciaRecicla.Models.TBL_Usuario
+
+@{
+    ViewData["Title"] = "Crear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="mx-0">
+    <br />
+    <h3><a asp-action="Mantenimiento" class="btn-outline-primary"><i class="bi bi-chevron-left mx-2 "></i></a><i class="bi bi-person"></i> Nuevo usuario</h3>
+    <hr />
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Crear">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CH_Nombre" class="control-label"></label>
+                <input asp-for="CH_Nombre" class="form-control" />
+                <span asp-validation-for="CH_Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Apellido_1" class="control-label"></label>
+                <input asp-for="CH_Apellido_1" class="form-control" />
+                <span asp-validation-for="CH_Apellido_1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_apellido_2" class="control-label"></label>
+                <input asp-for="CH_apellido_2" class="form-control" />
+                <span asp-validation-for="CH_apellido_2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Correo" class="control-label"></label>
+                <input asp-for="CH_Correo" class="form-control" />
+                <span asp-validation-for="CH_Correo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Clave" class="control-label"></label>
+                <input asp-for="CH_Clave" class="form-control" />
+                <span asp-validation-for="CH_Clave" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Telefono" class="control-label"></label>
+                <input asp-for="CH_Telefono" class="form-control" />
+                <span asp-validation-for="CH_Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Direccion" class="control-label"></label>
+                <input asp-for="CH_Direccion" class="form-control" />
+                <span asp-validation-for="CH_Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CAT_ProvinciaId" class="control-label"></label>
+                <select asp-for="CAT_ProvinciaId" class ="form-control" asp-items="ViewBag.CAT_ProvinciaId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

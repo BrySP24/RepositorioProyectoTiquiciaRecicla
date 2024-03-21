@@ -1,0 +1,70 @@
+﻿@model ProyectoTiquiciaRecicla.Models.TBL_Usuario
+
+@{
+    ViewData["Title"] = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="mx-0">
+    <br />
+    <h3><a asp-action="Mantenimiento" class="btn-outline-primary"><i class="bi bi-chevron-left mx-2 "></i></a><i class="bi bi-person"></i> Eliminar usuario</h3>
+    <hr />
+</div>
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CH_Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CH_Nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CH_Apellido_1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CH_Apellido_1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CH_apellido_2)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CH_apellido_2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CH_Correo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CH_Correo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CH_Clave)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CH_Clave)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CH_Telefono)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CH_Telefono)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CH_Direccion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CH_Direccion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CAT_Provincias)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CAT_Provincias.CH_Nombre)
+        </dd>
+    </dl>
+    <br />
+    <h6>¿Estás seguro de eliminar el registro?</h6>
+    <br />
+    <form asp-action="Eliminar">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+    </form>
+</div>
