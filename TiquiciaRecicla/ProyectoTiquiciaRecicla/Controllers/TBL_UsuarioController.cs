@@ -58,7 +58,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Crear([Bind("Id,CH_Nombre,CH_Apellido_1,CH_apellido_2,CH_Correo,CH_Clave,CH_Telefono,CH_Direccion,CAT_ProvinciaId")] TBL_Usuario tBL_Usuario)
+        public async Task<IActionResult> Crear([Bind("Id,CH_Nombre,CH_Apellido_1,CH_apellido_2,CH_Correo,CH_Clave,CH_Clave_2,CH_Telefono,CH_Direccion,CAT_ProvinciaId")] TBL_Usuario tBL_Usuario)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +92,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar(int id, [Bind("Id,CH_Nombre,CH_Apellido_1,CH_apellido_2,CH_Correo,CH_Clave,CH_Telefono,CH_Direccion,CAT_ProvinciaId")] TBL_Usuario tBL_Usuario)
+        public async Task<IActionResult> Editar(int id, [Bind("Id,CH_Nombre,CH_Apellido_1,CH_apellido_2,CH_Correo,CH_Clave,CH_Clave_2,CH_Telefono,CH_Direccion,CAT_ProvinciaId")] TBL_Usuario tBL_Usuario)
         {
             if (id != tBL_Usuario.Id)
             {
