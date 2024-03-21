@@ -36,6 +36,13 @@ namespace ProyectoTiquiciaRecicla.Models
         public string? CH_Clave { get; set; }
 
         [Required]
+        [Compare("CH_Clave", ErrorMessage = "Las contraseñas no coinciden")]
+        [StringLength(100, ErrorMessage = "La contraseña debe tener como máximo 100 caracteres")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirmar contraseña")]
+        public string? CH_Clave_2 { get; set; }
+
+        [Required]
         [Display(Name = "Teléfono")]
         [StringLength(8, ErrorMessage = "La dirección debe tener como máximo 8 caracteres")]
         [RegularExpression(@"^(?:\d{8}|\d{2}-\d{2}-\d{2}-\d{2})$", ErrorMessage = "El número de teléfono debe tener 8 dígitos.")]
