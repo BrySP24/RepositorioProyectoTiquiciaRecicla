@@ -38,6 +38,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CAT_Provincias)
+            </th> 
+            <th>
+                @Html.DisplayNameFor(model => model.CAT_RolId)
             </th>
             <th>
                 Opciones
@@ -70,6 +73,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CAT_Provincias.CH_Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CAT_Roles.CH_Nombre)
             </td>
             <td>
                     <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-primary  btn-sm"><i class="bi bi-pencil"></i> Editar</a> |

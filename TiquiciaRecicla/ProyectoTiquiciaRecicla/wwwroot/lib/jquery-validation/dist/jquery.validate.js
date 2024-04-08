@@ -383,10 +383,10 @@ $.extend( $.validator, {
 		maxlength: $.validator.format("Por favor, no escribas más de {0} caracteres."),
 		minlength: $.validator.format("Por favor, no escribas menos de {0} caracteres."),
 		rangelength: $.validator.format( "Por favor, escribe un valor entre {0} y {1} caracteres." ),
-		range: $.validator.format("Por favor, escribe un valor entre {0} y {1}.");
+		range: $.validator.format("Por favor, escribe un valor entre {0} y {1}."),
 		max: $.validator.format("Por favor, escribe un valor menor o igual a {0}."),
 		min: $.validator.format( "Por favor, escribe un valor mayor o igual a {0}." ),
-		step: $.validator.format("Please enter a multiple of {0}.")
+		step: $.validator.format("Please enter a multiple of {0}."),
 		compare: $.validator.format("prueva")
 	},
 

@@ -23,10 +23,12 @@ namespace ProyectoTiquiciaRecicla.Controllers
         // GET: TBL_Usuario
         public async Task<IActionResult> Mantenimiento()
         {
-            var appDbContext = _context.TBL_Usuarios.Include(t => t.CAT_Provincias);
+            var appDbContext = _context.TBL_Usuarios.Include(t => t.CAT_Provincias)
+                                                    .Include(r => r.CAT_Roles);
+
             return View(await appDbContext.ToListAsync());
         }
-
+        
         // GET: TBL_Usuario/Details/5
         public async Task<IActionResult> Detalles(int? id)
         {
@@ -37,6 +39,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
 
             var tBL_Usuario = await _context.TBL_Usuarios
                 .Include(t => t.CAT_Provincias)
+                 .Include(r => r.CAT_Roles)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tBL_Usuario == null)
             {
@@ -50,6 +53,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
         public IActionResult Crear()
         {
             ViewData["CAT_ProvinciaId"] = new SelectList(_context.CAT_Provincias, "Id", "CH_Nombre");
+            ViewData["CAT_RolId"] = new SelectList(_context.CAT_Roles, "Id", "CH_Nombre");
             return View();
         }
 
@@ -58,7 +62,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Crear([Bind("Id,CH_Nombre,CH_Apellido_1,CH_apellido_2,CH_Correo,CH_Clave,CH_Clave_2,CH_Telefono,CH_Direccion,CAT_ProvinciaId")] TBL_Usuario tBL_Usuario)
+        public async Task<IActionResult> Crear([Bind("Id,CH_Nombre,CH_Apellido_1,CH_apellido_2,CH_Correo,CH_Clave,CH_Telefono,CH_Direccion,CAT_ProvinciaId,CAT_RolId")] TBL_Usuario tBL_Usuario)
         {
             if (ModelState.IsValid)
             {
@@ -84,6 +88,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
                 return NotFound();
             }
             ViewData["CAT_ProvinciaId"] = new SelectList(_context.CAT_Provincias, "Id", "CH_Nombre", tBL_Usuario.CAT_ProvinciaId);
+            ViewData["CAT_RolId"] = new SelectList(_context.CAT_Roles, "Id", "CH_Nombre", tBL_Usuario.CAT_RolId);
             return View(tBL_Usuario);
         }
 
@@ -92,7 +97,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar(int id, [Bind("Id,CH_Nombre,CH_Apellido_1,CH_apellido_2,CH_Correo,CH_Clave,CH_Clave_2,CH_Telefono,CH_Direccion,CAT_ProvinciaId")] TBL_Usuario tBL_Usuario)
+        public async Task<IActionResult> Editar(int id, [Bind("Id,CH_Nombre,CH_Apellido_1,CH_apellido_2,CH_Correo,CH_Clave,CH_Telefono,CH_Direccion,CAT_ProvinciaId,CAT_RolId")] TBL_Usuario tBL_Usuario)
         {
             if (id != tBL_Usuario.Id)
             {
@@ -133,6 +138,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
 
             var tBL_Usuario = await _context.TBL_Usuarios
                 .Include(t => t.CAT_Provincias)
+                .Include(r => r.CAT_Roles)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tBL_Usuario == null)
             {
