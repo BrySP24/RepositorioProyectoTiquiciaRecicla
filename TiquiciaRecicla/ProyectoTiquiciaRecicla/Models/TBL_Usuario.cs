@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace ProyectoTiquiciaRecicla.Models
 {

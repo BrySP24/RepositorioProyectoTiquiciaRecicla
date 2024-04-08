@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
 using ProyectoTiquiciaRecicla.Data;
 using ProyectoTiquiciaRecicla.Models;
+using ProyectoTiquiciaRecicla.Utilidades;
 
 namespace ProyectoTiquiciaRecicla.Controllers
 {
@@ -66,6 +67,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Hash de la contraseña antes de guardarla
+                tBL_Usuario.CH_Clave = PasswordHasher.HashPassword(tBL_Usuario.CH_Clave);
+
                 _context.Add(tBL_Usuario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Mantenimiento));
@@ -108,6 +112,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
             {
                 try
                 {
+                    // Hash de la contraseña antes de guardarla
+                    tBL_Usuario.CH_Clave = PasswordHasher.HashPassword(tBL_Usuario.CH_Clave);
+
                     _context.Update(tBL_Usuario);
                     await _context.SaveChangesAsync();
                 }
