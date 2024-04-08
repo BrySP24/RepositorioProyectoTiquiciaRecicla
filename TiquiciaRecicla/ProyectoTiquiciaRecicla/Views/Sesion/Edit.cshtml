@@ -1,0 +1,69 @@
+﻿@model ProyectoTiquiciaRecicla.Models.TBL_Usuario
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>TBL_Usuario</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="CH_Nombre" class="control-label"></label>
+                <input asp-for="CH_Nombre" class="form-control" />
+                <span asp-validation-for="CH_Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Apellido_1" class="control-label"></label>
+                <input asp-for="CH_Apellido_1" class="form-control" />
+                <span asp-validation-for="CH_Apellido_1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_apellido_2" class="control-label"></label>
+                <input asp-for="CH_apellido_2" class="form-control" />
+                <span asp-validation-for="CH_apellido_2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Correo" class="control-label"></label>
+                <input asp-for="CH_Correo" class="form-control" />
+                <span asp-validation-for="CH_Correo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Clave" class="control-label"></label>
+                <input asp-for="CH_Clave" class="form-control" />
+                <span asp-validation-for="CH_Clave" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Telefono" class="control-label"></label>
+                <input asp-for="CH_Telefono" class="form-control" />
+                <span asp-validation-for="CH_Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Direccion" class="control-label"></label>
+                <input asp-for="CH_Direccion" class="form-control" />
+                <span asp-validation-for="CH_Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CAT_ProvinciaId" class="control-label"></label>
+                <select asp-for="CAT_ProvinciaId" class="form-control" asp-items="ViewBag.CAT_ProvinciaId"></select>
+                <span asp-validation-for="CAT_ProvinciaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -14,7 +14,7 @@
     <link rel="icon" type="image/x-icon" href="/Iconos/TiquiciaFondoOscuro.png" />
 
 
-    <!-- Favicon para inono en la barra superior denavegador-->
+    <!-- Favicon para inono en la barra superior de navegador-->
     <link rel="icon" type="image/x-icon" href="/Iconos/TiquiciaFondoOscuro.png" />
 
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -38,8 +38,11 @@
     </header>
 
     <!-- Sidebar-->
-    <div class="d-flex " id="sidebar-wrapper">
-        <div class="border-end bg-white " id="sidebar-wrapper">
+    
+        <div class="d-flex " id="sidebar-wrapper">
+        @if (ViewBag.ShowSidebar == null || ViewBag.ShowSidebar == true)
+        {
+            <div class="border-end bg-white " id="sidebar-wrapper">
             <div class=" list-group m-2">
 
                 <a style="text-align:left " class="btn btn-success  mb-2" href="@Url.Action("Index", "Home")"><i class="bi bi-house"></i> Inicio</a>
@@ -63,6 +66,7 @@
                 <a style="text-align:left" class="btn btn-success mb-2" href="@Url.Action("Mantenimiento", "TBL_Recibo_De_Reciclaje")"><i class="bi bi-ticket-detailed"></i> Recibos de reciclaje</a>
             </div>
             </div>
+            }
         <div class="container">
             <main role="main" class="pb-3">
                 @RenderBody()

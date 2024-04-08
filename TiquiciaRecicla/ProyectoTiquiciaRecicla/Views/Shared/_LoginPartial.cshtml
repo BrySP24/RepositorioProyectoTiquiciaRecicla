@@ -1,7 +1,11 @@
 ﻿
+<a class="nav-link text-dark" id="register" href="@Url.Action("Registro", "Sesion", new { area = "Identity" })">
+    <i class="bi bi-person-fill-lock"></i> Registrarse
+</a>
 
-<a class="nav-link text-dark" id="register" ><i class="bi bi-person-lines-fill"></i> Registrarse</a>
+<a class="nav-link text-dark" id="login" href="@Url.Action("Inicio_Sesion", "Sesion", new { area = "Identity" })">
+    <i class="bi bi-person-fill-lock"></i> Iniciar sesión
+</a>
 
- <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login"><i class="bi bi-person-fill-lock"></i> Iniciar sesion</a>
 
-   
+

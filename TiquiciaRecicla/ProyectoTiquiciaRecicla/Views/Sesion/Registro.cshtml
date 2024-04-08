@@ -1,0 +1,96 @@
+﻿@model ProyectoTiquiciaRecicla.Models.TBL_Usuario
+
+@{
+    ViewData["Title"] = "Registro";
+    ViewBag.ShowSidebar = false;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro</title>
+
+<style>
+    body {
+        /* Establece la imagen de fondo */
+            background-image: url('/Iconos/FondoRegistroSesion.png');
+        /* Establece el tamaño de la imagen de fondo */
+        background-size: cover;
+        /* Establece la posición de la imagen de fondo */
+        background-position: center;
+        /* Establece que la imagen de fondo no se repita */
+        background-repeat: no-repeat;
+        /* Ajusta el tamaño del contenido para evitar desbordamientos */
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+</head>
+<body>
+    <h1>Registro</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CH_Nombre" class="control-label"></label>
+                <input asp-for="CH_Nombre" class="form-control" />
+                <span asp-validation-for="CH_Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Apellido_1" class="control-label"></label>
+                <input asp-for="CH_Apellido_1" class="form-control" />
+                <span asp-validation-for="CH_Apellido_1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_apellido_2" class="control-label"></label>
+                <input asp-for="CH_apellido_2" class="form-control" />
+                <span asp-validation-for="CH_apellido_2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Correo" class="control-label"></label>
+                <input asp-for="CH_Correo" class="form-control" />
+                <span asp-validation-for="CH_Correo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Clave" class="control-label"></label>
+                <input asp-for="CH_Clave" class="form-control" />
+                <span asp-validation-for="CH_Clave" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Telefono" class="control-label"></label>
+                <input asp-for="CH_Telefono" class="form-control" />
+                <span asp-validation-for="CH_Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CH_Direccion" class="control-label"></label>
+                <input asp-for="CH_Direccion" class="form-control" />
+                <span asp-validation-for="CH_Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CAT_ProvinciaId" class="control-label"></label>
+                <select asp-for="CAT_ProvinciaId" class ="form-control" asp-items="ViewBag.CAT_ProvinciaId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Inicio_Sesion">Inicio de sesión</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+</body>
+</html>
