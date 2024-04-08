@@ -39,11 +39,11 @@
                 <input type="password" asp-for="CH_Clave" class="form-control" />
                 <span asp-validation-for="CH_Clave" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="CH_Clave_2" class="control-label"></label>
                 <input type="password" asp-for="CH_Clave_2" class="form-control" />
                 <span asp-validation-for="CH_Clave_2" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="CH_Telefono" class="control-label"></label>
                 <input asp-for="CH_Telefono" class="form-control" />
@@ -58,6 +58,11 @@
                 <label asp-for="CAT_ProvinciaId" class="control-label"></label>
                 <select asp-for="CAT_ProvinciaId" class ="form-control" asp-items="ViewBag.CAT_ProvinciaId"></select>
             </div>
+            <div class="form-group">
+                <label asp-for="CAT_RolId" class="control-label"></label>
+                <select asp-for="CAT_RolId" class="form-control" asp-items="ViewBag.CAT_RolId"></select>                
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Crear" class="btn btn-primary" />
             </div>

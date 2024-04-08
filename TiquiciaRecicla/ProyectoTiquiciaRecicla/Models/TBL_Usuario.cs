@@ -35,12 +35,12 @@ namespace ProyectoTiquiciaRecicla.Models
         [DataType(DataType.Password)]
         public string? CH_Clave { get; set; }
 
-        [Required]
+       /* [Required]
         [Compare("CH_Clave", ErrorMessage = "Las contraseñas no coinciden")]
         [StringLength(100, ErrorMessage = "La contraseña debe tener como máximo 100 caracteres")]
         [DataType(DataType.Password)]
         [Display(Name = "Confirmar contraseña")]
-        public string? CH_Clave_2 { get; set; }
+        public string? CH_Clave_2 { get; set; }*/
 
         [Required]
         [Display(Name = "Teléfono")]
@@ -62,6 +62,18 @@ namespace ProyectoTiquiciaRecicla.Models
 
         [Display(Name = "Provincia")]
         public virtual CAT_Provincia? CAT_Provincias { get; set; }
+
+        
+
+        //Relacion con tabla rol
+      
+        [ForeignKey("CAT_Rol")]
+        [Display(Name = "Roles")]
+        public int CAT_RolId { get; set; }
+
+        [Display(Name = "Rol")]
+        public virtual CAT_Rol? CAT_Roles { get; set; }
+
 
         //Para que genere una lista de usuarios existentes en recibos de reciclaje
         //public List<TBL_Recibos_De_Reciclaje>? TBL_Recibos_De_Reciclajes { get; set; }
