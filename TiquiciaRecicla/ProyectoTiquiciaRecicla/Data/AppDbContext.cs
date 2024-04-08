@@ -32,10 +32,6 @@ namespace ProyectoTiquiciaRecicla.Data
 
         public DbSet<CAT_Centro_Material> CAT_Centros_Materiales { get; set; }
 
-<<<<<<< Updated upstream
-        public DbSet<CAT_Rol> CAT_Roles { get; set; }
-=======
->>>>>>> Stashed changes
     }
 
 }
