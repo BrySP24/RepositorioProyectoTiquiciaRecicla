@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ProyectoTiquiciaRecicla.Models.BI_Materiales>
+
+<div id="piechart"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript" >
+    // Load google charts
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Draw the chart and set the chart values
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Material', 'Cantidad'],
+            @foreach (var item in Model)
+            {
+                @Html.Raw("['" + item.Nombre + "'," + item.Peso_Total + "],")
+            }
+            ['Latas',100],
+            ['Carton',400],
+        ]);
+
+        // Optional; add a title and set the width and height of the chart
+        var options = {
+            'title': 'Porcentaje de tipos de materiales reciclados',
+            'width': 400,
+            'height': 300,
+            'colors': ['#ff0000', '#66ff99']
+        };
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+    }
+</script>

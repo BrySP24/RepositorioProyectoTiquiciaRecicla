@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1>Dashboard</h1>
+
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            @await Component.InvokeAsync("DatosMateriales")
+        </div>
+        <div class="col-sm">
+        @await Component.InvokeAsync("DatosProvincias")
+        </div>
+    </div>
+</div>

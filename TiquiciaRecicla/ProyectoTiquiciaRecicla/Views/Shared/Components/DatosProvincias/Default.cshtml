@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ProyectoTiquiciaRecicla.Models.BI_Materiales>
+
+<div id="geochart"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {
+        'packages': ['geochart'],
+    });
+    google.charts.setOnLoadCallback(drawRegionsMap);
+
+    function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+            ['Provincia', 'Peso Total'],
+            ['San José', 200],
+            ['Heredia', 300],
+            ['Cartago', 100],
+            ['Limón', 150],
+            ['Puntarenas', 200],
+            ['Guanacaste', 75],
+            ['Alajuela',150],
+        ]);
+
+        var options = {
+            region: 'CR',
+            displaymode: 'regions',
+            resolution: 'provinces',
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('geochart'));
+
+        chart.draw(data, options);
+    }
+
+    //create trigger to resizeEnd event
+    $(window).resize(function () {
+        if (this.resizeTO) clearTimeout(this.resizeTO);
+        this.resizeTO = setTimeout(function () {
+            $(this).trigger('resizeEnd');
+        }, 500);
+    });
+
+    //redraw graph when window resize is completed
+    $(window).on('resizeEnd', function () {
+        drawChart(data);
+    });
+
+</script>
