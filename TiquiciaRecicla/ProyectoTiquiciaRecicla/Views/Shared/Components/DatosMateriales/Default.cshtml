@@ -6,7 +6,7 @@
 
 <script type="text/javascript" >
     // Load google charts
-    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.load('47', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(drawChart);
 
     // Draw the chart and set the chart values
@@ -17,8 +17,6 @@
             {
                 @Html.Raw("['" + item.Nombre + "'," + item.Peso_Total + "],")
             }
-            ['Latas',100],
-            ['Carton',400],
         ]);
 
         // Optional; add a title and set the width and height of the chart
@@ -26,7 +24,7 @@
             'title': 'Porcentaje de tipos de materiales reciclados',
             'width': 400,
             'height': 300,
-            'colors': ['#ff0000', '#66ff99']
+            'colors': ['#C1F7D5', '#A3EBB1', '#84DF8D', '#66D369', '#47C745', '#29BB21', '#24A11C', '#1F8716', '#1A6D11', '#15530C']
         };
 
         // Display the chart inside the <div> element with id="piechart"

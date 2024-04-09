@@ -18,10 +18,16 @@ namespace ProyectoTiquiciaRecicla.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var resultado = _context.TBL_Recibos_De_Reciclaje
-            .SelectMany(r => _context.CAT_Tipos_De_Materiales.Where(m => r.CAT_Tipo_De_MaterialId == m.Id).DefaultIfEmpty(), (r, m) => new { r, m })
-            .GroupBy(m => new { m.r.CAT_Tipo_De_MaterialId, m.m.CH_Nombre, m.r.DEC_Peso }, m => m.r)
-            .Select(d => new BI_Materiales { Id = d.Key.CAT_Tipo_De_MaterialId, Nombre = d.Key.CH_Nombre, Peso_Total = d.Sum(x => x.DEC_Peso) });
+            var resultado = from r in _context.TBL_Recibos_De_Reciclaje
+                        join m in _context.CAT_Tipos_De_Materiales on r.CAT_Tipo_De_MaterialId equals m.Id into materialGroup
+                        from material in materialGroup.DefaultIfEmpty()
+                        group r by material.CH_Nombre into grouped
+                        select new BI_Materiales
+                        {
+                            Id = 0,
+                            Nombre = grouped.Key,
+                            Peso_Total = grouped.Sum(x => x.DEC_Peso)
+                        };
 
             return View(await resultado.ToListAsync());
         }

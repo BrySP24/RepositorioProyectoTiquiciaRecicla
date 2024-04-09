@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ProyectoTiquiciaRecicla.Data;
 using ProyectoTiquiciaRecicla.Models;
 
-namespace ProyectoTiquiciaRecicla
+namespace ProyectoTiquiciaRecicla.Controllers
 {
     public class CAT_RolController : Controller
     {
@@ -22,9 +22,9 @@ namespace ProyectoTiquiciaRecicla
         // GET: CAT_Rol
         public async Task<IActionResult> Index()
         {
-              return _context.CAT_Roles != null ? 
-                          View(await _context.CAT_Roles.ToListAsync()) :
-                          Problem("Entity set 'AppDbContext.CAT_Roles'  is null.");
+            return _context.CAT_Roles != null ?
+                        View(await _context.CAT_Roles.ToListAsync()) :
+                        Problem("Entity set 'AppDbContext.CAT_Roles'  is null.");
         }
 
         // GET: CAT_Rol/Details/5
@@ -150,14 +150,14 @@ namespace ProyectoTiquiciaRecicla
             {
                 _context.CAT_Roles.Remove(cAT_Rol);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CAT_RolExists(int id)
         {
-          return (_context.CAT_Roles?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.CAT_Roles?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
