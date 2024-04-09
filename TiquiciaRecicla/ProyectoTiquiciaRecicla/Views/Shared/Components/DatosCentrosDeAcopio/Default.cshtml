@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ProyectoTiquiciaRecicla.Models.BI_CentrosDeAcopio>
+
+<div id="treemap"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+    google.charts.load('47', { 'packages': ['treemap'] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Location', 'Parent', 'Market trade volume (size)'],
+            ['Global', null, 0],
+            @{int x = 1;}
+    @foreach (var item in Model)
+    {
+        if (item.Nombre_2 == "Global")
+        {
+            @Html.Raw("['" + item.Nombre_1 + "','" + item.Nombre_2 + "'," + item.Peso_Total + "],")
+        }
+        else
+        {
+            @Html.Raw("[{v:'" + x + "', f:'" + item.Nombre_1 + "'},'" + item.Nombre_2 + "'," + item.Peso_Total + "],")
+            x += 1;
+        }
+        
+    }
+        ]);
+
+        tree = new google.visualization.TreeMap(document.getElementById('treemap'));
+
+        tree.draw(data, {
+            minColor: '#E8FFE8',
+            midColor: '#94E594',
+            maxColor: '#15530C',
+            headerHeight: 15,
+            fontColor: 'black',
+            showScale: true,
+            generateTooltip: showFullTooltip
+        });
+
+        function showFullTooltip(row) {
+            return '<div style="background:#ffffff; padding:5px; border-style:solid">' +
+                '<span style="font-family:Courier"><b>' + data.getValue(row, 0) +
+                '</b>, ' + data.getValue(row, 1) + ', ' + data.getValue(row, 2) + '</span></div>';
+        }
+
+    }
+</script>
