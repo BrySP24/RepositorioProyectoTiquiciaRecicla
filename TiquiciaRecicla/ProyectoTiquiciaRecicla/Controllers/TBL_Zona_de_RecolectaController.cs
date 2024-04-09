@@ -155,14 +155,17 @@ namespace ProyectoTiquiciaRecicla.Controllers
             {
                 _context.TBL_Zonas_de_Recolecta.Remove(tBL_Zona_de_Recolecta);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Mantenimiento));
         }
 
         private bool TBL_Zona_de_RecolectaExists(int id)
         {
-          return (_context.TBL_Zonas_de_Recolecta?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.TBL_Zonas_de_Recolecta?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
+
 }
+
+

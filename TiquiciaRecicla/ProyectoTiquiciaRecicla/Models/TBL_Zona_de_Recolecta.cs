@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using ProyectoTiquiciaRecicla.Controllers;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectoTiquiciaRecicla.Models
@@ -44,4 +46,5 @@ namespace ProyectoTiquiciaRecicla.Models
         public virtual CAT_Centro_De_Acopio? CAT_Centros_De_Acopio { get; set; }
 
     }
+    
 }
