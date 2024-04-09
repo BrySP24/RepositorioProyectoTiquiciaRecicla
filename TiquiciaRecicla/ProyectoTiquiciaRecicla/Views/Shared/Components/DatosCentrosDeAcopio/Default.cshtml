@@ -35,8 +35,15 @@
             maxColor: '#15530C',
             headerHeight: 15,
             fontColor: 'black',
-            showScale: true
+            showScale: true,
+            generateTooltip: showFullTooltip
         });
+
+        function showFullTooltip(row) {
+            return '<div style="background:#ffffff; padding:5px; border-style:solid">' +
+                '<span style="font-family:Courier"><b>' + data.getValue(row, 0) +
+                '</b>, ' + data.getValue(row, 1) + ', ' + data.getValue(row, 2) + '</span></div>';
+        }
 
     }
 </script>

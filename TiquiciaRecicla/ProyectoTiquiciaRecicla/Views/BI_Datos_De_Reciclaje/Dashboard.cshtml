@@ -1,16 +1,30 @@
 ﻿@{
     ViewData["Title"] = "Dashboard";
 }
-
-<h1>Dashboard</h1>
-
+<br />
+<h1 style="text-align: center">Estadísticas de reciclaje</h1>
+<br />
 <div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h3 style="text-align: center">Distribución de materiales</h3>
+        </div>
+        <div class="col-sm">
+            <h3 style="text-align: center">Reciclaje por provincia</h3>
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm">
             @await Component.InvokeAsync("DatosMateriales")
         </div>
         <div class="col-sm">
             @await Component.InvokeAsync("DatosProvincias")
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm">
+            <h3 style="text-align: center">Distribución de reciclaje por centro de acopio</h3>
         </div>
     </div>
     <div class="row">
