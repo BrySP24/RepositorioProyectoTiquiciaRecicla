@@ -15,12 +15,12 @@ namespace ProyectoTiquiciaRecicla.Models
         public string? CH_Nombre{ get; set; }
 
         [Required(ErrorMessage = "El primer apellido es un campo obligatorio")]
-        [Display(Name = "Primer Apellido")]
+        [Display(Name = "Primer apellido")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "El apellido debe tener 2 y 50 caracteres")]
         public string? CH_Apellido_1 { get; set; }
 
         [Required(ErrorMessage = "El segundo apellido es un campo obligatorio")]
-        [Display(Name = "Segundo Apellido")]
+        [Display(Name = "Segundo apellido")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "El segundo apellido debe tener 2 y 50 caracteres")]
         public string? CH_apellido_2 { get; set; }
 
