@@ -13,7 +13,7 @@ namespace ProyectoTiquiciaRecicla.Models
         public DateTime DTI_Fecha_Hora { get; set; }
 
         [Required]
-        [Display(Name = "Peso en Km")]
+        [Display(Name = "Peso en kg")]
         public float DEC_Peso { get; set; }
         
         //Relacion con Tipo_De_Materiales
