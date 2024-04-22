@@ -10,12 +10,12 @@
             type: "indicator",
             mode: "number+delta",
             align: "top",
-            value: @Html.Raw(Model.First().Valor_1.ToString().Replace(',', '.') + ",")
+            value: @Html.Raw(Model.FirstOrDefault().Valor_1.ToString().Replace(',', '.') + ",")
             title: {
                 text:
                     "Kilos reciclados"
             },
-        delta: { reference: @Html.Raw(Model.Last().Valor_1.ToString().Replace(',', '.')), relative: true, position: "right" }
+        delta: { reference: @Html.Raw(Model.LastOrDefault().Valor_1.ToString().Replace(',', '.')), relative: true, position: "right" }
         }
     ];
 
@@ -34,12 +34,12 @@
             type: "indicator",
             mode: "number+delta",
             align: "top",
-            value: @Html.Raw(Model.First().Valor_2.ToString().Replace(',', '.') + ",")
+            value: @Html.Raw(Model.FirstOrDefault().Valor_2.ToString().Replace(',', '.') + ",")
             title: {
                 text:
                     "Número de reciclajes"
             },
-        delta: { reference: @Html.Raw(Model.Last().Valor_2.ToString().Replace(',', '.')), relative: true, position: "right" }
+        delta: { reference: @Html.Raw(Model.LastOrDefault().Valor_2.ToString().Replace(',', '.')), relative: true, position: "right" }
         }
     ];
 

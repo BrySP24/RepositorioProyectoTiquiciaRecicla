@@ -18,8 +18,8 @@ namespace ProyectoTiquiciaRecicla.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var resultado1 = (from r in _context.TBL_Recibos_De_Reciclaje
-                                     where r.DTI_Fecha_Hora.Month == _context.TBL_Recibos_De_Reciclaje.Max(x => x.DTI_Fecha_Hora.Month) &&
-                                           r.DTI_Fecha_Hora.Year == _context.TBL_Recibos_De_Reciclaje.Max(x => x.DTI_Fecha_Hora.Year)
+                                     where r.DTI_Fecha_Hora.Month == _context.TBL_Recibos_De_Reciclaje.Max(x => x.DTI_Fecha_Hora).Month &&
+                                           r.DTI_Fecha_Hora.Year == _context.TBL_Recibos_De_Reciclaje.Max(x => x.DTI_Fecha_Hora).Year
                                      select new BI_KPIs
                                      {
                                          ID = 0,
@@ -34,8 +34,8 @@ namespace ProyectoTiquiciaRecicla.ViewComponents
                          });
 
             var resultado2 = (from r in _context.TBL_Recibos_De_Reciclaje
-                                      where r.DTI_Fecha_Hora.Month == _context.TBL_Recibos_De_Reciclaje.Max(x => x.DTI_Fecha_Hora.Month) - 1 &&
-                                            r.DTI_Fecha_Hora.Year == _context.TBL_Recibos_De_Reciclaje.Max(x => x.DTI_Fecha_Hora.Year)
+                                      where r.DTI_Fecha_Hora.Month == _context.TBL_Recibos_De_Reciclaje.Max(x => x.DTI_Fecha_Hora).Month - 1 &&
+                                            r.DTI_Fecha_Hora.Year == _context.TBL_Recibos_De_Reciclaje.Max(x => x.DTI_Fecha_Hora).Year
                                       select new BI_KPIs
                                       {
                                           ID = 0,
