@@ -1,0 +1,107 @@
+﻿@model IEnumerable<ProyectoTiquiciaRecicla.Models.BI_SesionesDeUsuario>
+
+<div style = "overflow:hidden;height:400px;overflow-y:scroll">
+    <table style="border: 1px solid black">
+        <tr>
+            <th>ID de usuario</th>
+            <th>Correo electrónico</th>
+            <th>Nombre de usuario</th>
+            <th>Provincia</th>
+            <th>Inicio de sesión</th>
+            <th>Final de sesión</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.Raw(item.Id)
+                </td>
+                <td>
+                    @Html.Raw(item.Correo)
+                </td>
+                <td>
+                    @Html.Raw(item.Nombre + " " + item.Apellido_1 + " " + item.Apellido_2)
+                </td>
+                <td>
+                    @Html.Raw(item.Provincia)
+                </td>
+                <td>
+                    @Html.Raw(item.Fecha_Hora_Inicio)
+                </td>
+                <td>
+                    @Html.Raw(item.Fecha_Hora_Cierre)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<br />
+<button onclick="exportTbToCSVformat('export_details.csv')" class="btn btn-success mb-2" style="display:block;margin:auto">Exportar</button>
+
+<style>
+    table, th, td{
+        border: 1px solid black
+    }
+    th{
+        text-align: center;
+        background-color: #77A86B;
+        color: white;
+    }
+    th, td{
+        padding-left: 6px;
+        padding-right: 6px
+    }
+    table{
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        border-collapse: collapse;
+    }
+    tr:nth-child(even) {background-color: #F1FFEE}
+</style>
+
+<script type="text/javascript">
+
+	function downloadToCSV(csv, filename) {
+		var csvFile;
+		var downloadLink;
+
+		// CSV file
+		csvFile = new Blob([csv], { type: "text/csv" });
+
+		// Download link
+		downloadLink = document.createElement("a");
+
+		// File name
+		downloadLink.download = filename;
+
+		// Create a link to the file
+		downloadLink.href = window.URL.createObjectURL(csvFile);
+
+		// Hide download link
+		downloadLink.style.display = "none";
+
+		// Add the link to DOM
+		document.body.appendChild(downloadLink);
+
+		// Click download link
+		downloadLink.click();
+	}
+
+	function exportTbToCSVformat(filename) {
+		var csv = [];
+		var rows = document.querySelectorAll("table tr");
+
+		for (var i = 0; i < rows.length; i++) {
+			var row = [], cols = rows[i].querySelectorAll("td, th");
+
+			for (var j = 0; j < cols.length; j++)
+				row.push(cols[j].innerText);
+
+			csv.push(row.join(","));
+		}
+
+		// Download CSV file
+		downloadToCSV(csv.join("\n"), filename);
+	}
+</script>

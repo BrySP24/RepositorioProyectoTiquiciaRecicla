@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProyectoTiquiciaRecicla.Models.BI_Provincias>
+﻿@model IEnumerable<ProyectoTiquiciaRecicla.Models.BI_UsosProvincias>
 
 <div id="geochart"></div>
 
@@ -15,14 +15,15 @@
             ['Provincia', 'Peso Total'],
     @foreach (var item in Model)
     {
-        @Html.Raw("['" + item.Nombre + "'," + item.Peso_Total.ToString().Replace(',', '.') + "],")
+        @Html.Raw("['" + item.Nombre + "'," + item.Sesiones.ToString().Replace(',', '.') + "],")
     }
-        ]);
+            ]);
 
         var options = {
             region: 'CR',
             displaymode: 'regions',
             resolution: 'provinces',
+            height: 280,
         };
 
         var chart = new google.visualization.GeoChart(document.getElementById('geochart'));

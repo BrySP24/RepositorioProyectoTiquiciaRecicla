@@ -6,7 +6,7 @@
 
 <script type="text/javascript" >
     // Load google charts
-    google.charts.load('47', { 'packages': ['corechart'] });
+    google.charts.load('46', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(drawChart);
 
     // Draw the chart and set the chart values
@@ -15,16 +15,15 @@
             ['Material', 'Cantidad'],
             @foreach (var item in Model)
             {
-                @Html.Raw("['" + item.Nombre + "'," + item.Peso_Total + "],")
+                @Html.Raw("['" + item.Nombre + "'," + item.Peso_Total.ToString().Replace(',','.') + "],")
             }
         ]);
 
         // Optional; add a title and set the width and height of the chart
         var options = {
-            'title': 'Porcentaje de tipos de materiales reciclados',
             'width': 500,
-            'height': 300,
-            'chartArea.width': '100%',
+            'height': 250,
+            'legend.position': 'none',
             'colors': ['#C1F7D5', '#A3EBB1', '#84DF8D', '#66D369', '#47C745', '#29BB21', '#24A11C', '#1F8716', '#1A6D11', '#15530C']
         };
 

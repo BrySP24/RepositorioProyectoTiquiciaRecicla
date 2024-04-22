@@ -5,7 +5,7 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
-    google.charts.load('47', { 'packages': ['treemap'] });
+    google.charts.load('46', { 'packages': ['treemap'] });
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
@@ -16,11 +16,11 @@
     {
         if (item.Nombre_2 == "Global")
         {
-            @Html.Raw("['" + item.Nombre_1 + "','" + item.Nombre_2 + "'," + item.Peso_Total + "],")
+            @Html.Raw("['" + item.Nombre_1 + "','" + item.Nombre_2 + "'," + item.Peso_Total.ToString().Replace(',','.') + "],")
         }
         else
         {
-            @Html.Raw("[{v:'" + x + "', f:'" + item.Nombre_1 + "'},'" + item.Nombre_2 + "'," + item.Peso_Total + "],")
+            @Html.Raw("[{v:'" + x + "', f:'" + item.Nombre_1 + "'},'" + item.Nombre_2 + "'," + item.Peso_Total.ToString().Replace(',', '.') + "],")
             x += 1;
         }
         

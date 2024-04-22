@@ -5,31 +5,58 @@
 <h1 style="text-align: center">Estadísticas de reciclaje</h1>
 <br />
 <div class="container">
-    <div class="row">
-        <div class="col-sm">
-            <h3 style="text-align: center">Distribución de materiales</h3>
-        </div>
-        <div class="col-sm">
-            <h3 style="text-align: center">Reciclaje por provincia</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm">
-            @await Component.InvokeAsync("DatosMateriales")
-        </div>
-        <div class="col-sm">
-            @await Component.InvokeAsync("DatosProvincias")
-        </div>
-    </div>
     <br />
     <div class="row">
-        <div class="col-sm">
-            <h3 style="text-align: center">Distribución de reciclaje por centro de acopio</h3>
+        <div class="col-4">
+            <h5 style="text-align: center">Rendimiento contra mes anterior</h5>
+        </div>
+        <div class="col">
+            <h5 style="text-align: center">Peso recibido en los últimos 6 meses</h5>
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <div class="col-4">
+            @await Component.InvokeAsync("DatosKPIsMensuales")
+        </div>
+        <div class="col">
+            @await Component.InvokeAsync("DatosPesoMensual")
         </div>
     </div>
     <div class="row">
-        <div class="col-sm">
+        <div class="col">
+            <h5 style="text-align: center">Total de materiales recibidos</h5>
+        </div>
+        <div class="col">
+            <h5 style="text-align: center">Rendimiento por centro de acopio</h5>
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <div class="col">
+            @await Component.InvokeAsync("DatosMateriales")
+        </div>
+        <div class="col">
             @await Component.InvokeAsync("DatosCentrosDeAcopio")
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col">
+            <h5 style="text-align: center">Ingresos de reciclaje por provincia</h5>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col">
+            @await Component.InvokeAsync("DatosProvincias")
+        </div>
+        <div class="col-2">
         </div>
     </div>
 </div>

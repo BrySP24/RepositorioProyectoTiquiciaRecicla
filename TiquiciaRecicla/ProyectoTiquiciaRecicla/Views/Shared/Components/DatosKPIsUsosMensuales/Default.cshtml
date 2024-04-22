@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ProyectoTiquiciaRecicla.Models.BI_KPIs>
+
+<div id="kpis1"></div> <div id="kpis2"></div>
+
+<script src='https://cdn.plot.ly/plotly-2.31.1.min.js'></script>
+
+<script type="text/javascript">
+    var data = [
+        {
+            type: "indicator",
+            mode: "number+delta",
+            align: "top",
+            value: @Html.Raw(Model.FirstOrDefault().Valor_1.ToString().Replace(',', '.') + ",")
+                title: {
+            text:
+                "Promedio de sesión (minutos)"
+        },
+        delta: { reference: @Html.Raw(Model.LastOrDefault().Valor_1.ToString().Replace(',', '.')), relative: true, position: "right" }
+            }
+        ];
+
+    var layout = {
+        margin: { t: 0, b: 0, l: 0, r: 0 },
+        width: 300,
+        height: 130,
+    };
+
+    Plotly.newPlot('kpis1', data, layout);
+</script>
+
+<script type="text/javascript">
+    var data = [
+        {
+            type: "indicator",
+            mode: "number+delta",
+            align: "top",
+            value: @Html.Raw(Model.FirstOrDefault().Valor_2.ToString().Replace(',', '.') + ",")
+                title: {
+            text:
+                "Inicios de sesión"
+        },
+        delta: { reference: @Html.Raw(Model.LastOrDefault().Valor_2.ToString().Replace(',', '.')), relative: true, position: "right" }
+            }
+        ];
+
+    var layout = {
+        margin: { t: 0, b: 0, l: 0, r: 0 },
+        width: 300,
+        height: 130,
+    };
+
+    Plotly.newPlot('kpis2', data, layout);
+</script>
