@@ -6,8 +6,6 @@ namespace ProyectoTiquiciaRecicla.Models
 {
     public class CAT_Rol
     {
-
-
         [Key]
         public int Id { get; set; }
 
@@ -17,6 +15,5 @@ namespace ProyectoTiquiciaRecicla.Models
         public string? CH_Nombre { get; set; }
 
         public ICollection<CAT_Rol>? CAT_Roles { get; set; }
-
     }
 }

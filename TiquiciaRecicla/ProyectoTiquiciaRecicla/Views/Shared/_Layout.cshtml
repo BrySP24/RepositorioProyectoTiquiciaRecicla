@@ -37,35 +37,44 @@
         <partial name="_MenuSuperior.cshtml"> </partial>
     </header>
 
+    @{
+        // Obtener el valor de UsuarioRol de ViewData
+        int usuarioRol = ViewData["UsuarioRol"] != null ? (int)ViewData["UsuarioRol"] : 0;
+        // Obtener el valor de UsuarioSesion de ViewBag
+        int usuarioSesion = ViewBag.UsuarioSesion != null ? (int)ViewBag.UsuarioSesion : 0;
+    }
     <!-- Sidebar-->
     
         <div class="d-flex " id="sidebar-wrapper">
         @if (ViewBag.ShowSidebar == null || ViewBag.ShowSidebar == true)
         {
             <div class="border-end bg-white " id="sidebar-wrapper">
-            <div class=" list-group m-2">
-
-                <a style="text-align:left " class="btn btn-success  mb-2" href="@Url.Action("Index", "Home")"><i class="bi bi-house"></i> Inicio</a>
-
-                <a style="text-align:left" class="btn btn-success  mb-2 " href="@Url.Action("Mantenimiento", "CAT_Provincia")"><i class="bi bi-signpost"></i> Provincias</a>
-
-                <a style="text-align:left" class="btn btn-success mb-2 " href="@Url.Action("Mantenimiento", "TBL_Usuario")"><i class="bi bi-person"></i> Administrar usuarios</a>
-
-                <a style="text-align:left " class="btn btn-success mb-2  " href="@Url.Action("Mantenimiento", "CAT_Empresa_Recolectora")"><i class="bi bi-truck"></i> Empresas recolectoras</a>
-
-                <a style="text-align:left" class="btn btn-success mb-2 " href="@Url.Action("Mantenimiento", "CAT_Centro_De_Acopio")"><i class="bi bi-building"></i> Centro de acopio</a>
-
-                <a style="text-align:left" class="btn btn-success mb-2  " href="@Url.Action("Mantenimiento", "TBL_Evento")"><i class="bi bi-calendar2-event"></i>  Eventos</a>
-
-                <a style="text-align:left" class="btn btn-success mb-2" href="@Url.Action("Mantenimiento", "TBL_Anuncio")"><i class="bi bi-megaphone"></i> Anuncios</a>
-
-                <a style="text-align:left" class="btn btn-success mb-2 " href="@Url.Action("Mantenimiento", "TBL_Zona_de_Recolecta")"><i class="bi bi-pin-map"></i> Zonas de recolecta</a>
-
-                <a style="text-align:left" class="btn btn-success mb-2" href="@Url.Action("Mantenimiento", "CAT_Tipo_De_Material")"><i class="bi bi-box-seam"></i> Tipos de materiales</a>
-
-                <a style="text-align:left" class="btn btn-success mb-2" href="@Url.Action("Mantenimiento", "TBL_Recibo_De_Reciclaje")"><i class="bi bi-ticket-detailed"></i> Recibos de reciclaje</a>
-
-                <a style="text-align:left" class="btn btn-success mb-2" href="@Url.Action("Dashboard", "BI_Datos_De_Reciclaje")"><i class="bi bi-ticket-detailed"></i> Estadísticas de reciclaje</a>
+                <div class=" list-group m-2">
+                    <!-- Mostrar Inicio para todos -->
+                    <a style="text-align:left" class="btn btn-success mb-2" href="@Url.Action("Index", "Home")"><i class="bi bi-house"></i> Inicio</a>
+                    
+                    @if (usuarioRol == 1)
+                    {
+                        <a style="text-align:left" class="btn btn-success  mb-2 " href="@Url.Action("Mantenimiento", "CAT_Provincia")"><i class="bi bi-signpost"></i> Provincias</a>
+                        <a style="text-align:left" class="btn btn-success mb-2 " href="@Url.Action("Mantenimiento", "TBL_Usuario")"><i class="bi bi-person"></i> Administrar usuarios</a>
+                        <a style="text-align:left " class="btn btn-success mb-2  " href="@Url.Action("Mantenimiento", "CAT_Empresa_Recolectora")"><i class="bi bi-truck"></i> Empresas recolectoras</a>
+                        <a style="text-align:left" class="btn btn-success mb-2 " href="@Url.Action("Mantenimiento", "CAT_Centro_De_Acopio")"><i class="bi bi-building"></i> Centro de acopio</a>
+                        <a style="text-align:left" class="btn btn-success mb-2  " href="@Url.Action("Mantenimiento", "TBL_Evento")"><i class="bi bi-calendar2-event"></i>  Eventos</a>
+                        <a style="text-align:left" class="btn btn-success mb-2" href="@Url.Action("Mantenimiento", "TBL_Anuncio")"><i class="bi bi-megaphone"></i> Anuncios</a>
+                        <a style="text-align:left" class="btn btn-success mb-2 " href="@Url.Action("Mantenimiento", "TBL_Zona_de_Recolecta")"><i class="bi bi-pin-map"></i> Zonas de recolecta</a>
+                        <a style="text-align:left" class="btn btn-success mb-2" href="@Url.Action("Mantenimiento", "CAT_Tipo_De_Material")"><i class="bi bi-box-seam"></i> Tipos de materiales</a>
+                        <a style="text-align:left" class="btn btn-success mb-2" href="@Url.Action("Mantenimiento", "TBL_Recibo_De_Reciclaje")"><i class="bi bi-ticket-detailed"></i> Recibos de reciclaje</a>
+                        <a style="text-align:left" class="btn btn-success mb-2" href="@Url.Action("Dashboard", "BI_Datos_De_Reciclaje")"><i class="bi bi-ticket-detailed"></i> Estadísticas de reciclaje</a>
+                    }else if(usuarioRol == 2){
+                        <a style="text-align:left " class="btn btn-success mb-2  " href="@Url.Action("Mantenimiento", "CAT_Empresa_Recolectora")"><i class="bi bi-truck"></i> Empresas recolectoras</a>
+                        <a style="text-align:left" class="btn btn-success mb-2 " href="@Url.Action("Mantenimiento", "CAT_Centro_De_Acopio")"><i class="bi bi-building"></i> Centro de acopio</a>
+                        <a style="text-align:left" class="btn btn-success mb-2  " href="@Url.Action("Mantenimiento", "TBL_Evento")"><i class="bi bi-calendar2-event"></i>  Eventos</a>
+                        <a style="text-align:left" class="btn btn-success mb-2" href="@Url.Action("Mantenimiento", "TBL_Anuncio")"><i class="bi bi-megaphone"></i> Anuncios</a>
+                        <a style="text-align:left" class="btn btn-success mb-2 " href="@Url.Action("Mantenimiento", "TBL_Zona_de_Recolecta")"><i class="bi bi-pin-map"></i> Zonas de recolecta</a>
+                        <a style="text-align:left" class="btn btn-success mb-2" href="@Url.Action("Mantenimiento", "CAT_Tipo_De_Material")"><i class="bi bi-box-seam"></i> Tipos de materiales</a>
+                    }else if(usuarioRol == 3){
+                        <a style="text-align:left" class="btn btn-success mb-2" href="@Url.Action("Mantenimiento", "TBL_Recibo_De_Reciclaje")"><i class="bi bi-ticket-detailed"></i> Recibos de reciclaje</a>
+                    }
             </div>
             </div>
             }

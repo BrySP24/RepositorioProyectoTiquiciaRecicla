@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoTiquiciaRecicla.Data;
 using ProyectoTiquiciaRecicla.Models;
+using static ProyectoTiquiciaRecicla.Controllers.HomeController;
 
 namespace ProyectoTiquiciaRecicla.Controllers
 {
@@ -23,12 +24,18 @@ namespace ProyectoTiquiciaRecicla.Controllers
         public async Task<IActionResult> Mantenimiento()
         {
             var appDbContext = _context.TBL_Recibos_De_Reciclaje.Include(t => t.CAT_Centros_De_Acopio).Include(t => t.CAT_Tipos_De_Materiales).Include(t => t.TBL_Usuarios);
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View(await appDbContext.ToListAsync());
         }
 
         // GET: TBL_Recibo_De_Reciclaje/Details/5
         public async Task<IActionResult> Detalles(int? id)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (id == null || _context.TBL_Recibos_De_Reciclaje == null)
             {
                 return NotFound();
@@ -43,7 +50,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
             {
                 return NotFound();
             }
-
+            
             return View(tBL_Recibo_De_Reciclaje);
         }
 
@@ -53,6 +60,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
             ViewData["CAT_Centro_De_AcopioId"] = new SelectList(_context.CAT_Centros_De_Acopio, "Id", "CH_Nombre");
             ViewData["CAT_Tipo_De_MaterialId"] = new SelectList(_context.CAT_Tipos_De_Materiales, "Id", "CH_Descripcion");
             ViewData["TBL_UsuarioId"] = new SelectList(_context.TBL_Usuarios, "Id", "CH_Nombre");
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View();
         }
 
@@ -63,6 +73,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Crear([Bind("Id,DTI_Fecha_Hora,DEC_Peso,CAT_Tipo_De_MaterialId,CAT_Centro_De_AcopioId,TBL_UsuarioId")] TBL_Recibo_De_Reciclaje tBL_Recibo_De_Reciclaje)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (ModelState.IsValid)
             {
                 _context.Add(tBL_Recibo_De_Reciclaje);
@@ -72,12 +85,16 @@ namespace ProyectoTiquiciaRecicla.Controllers
             ViewData["CAT_Centro_De_AcopioId"] = new SelectList(_context.CAT_Centros_De_Acopio, "Id", "CH_Nombre", tBL_Recibo_De_Reciclaje.CAT_Centro_De_AcopioId);
             ViewData["CAT_Tipo_De_MaterialId"] = new SelectList(_context.CAT_Tipos_De_Materiales, "Id", "CH_Descripcion", tBL_Recibo_De_Reciclaje.CAT_Tipo_De_MaterialId);
             ViewData["TBL_UsuarioId"] = new SelectList(_context.TBL_Usuarios, "Id", "CH_Nombre", tBL_Recibo_De_Reciclaje.TBL_UsuarioId);
+            
             return View(tBL_Recibo_De_Reciclaje);
         }
 
         // GET: TBL_Recibo_De_Reciclaje/Edit/5
         public async Task<IActionResult> Editar(int? id)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (id == null || _context.TBL_Recibos_De_Reciclaje == null)
             {
                 return NotFound();
@@ -91,6 +108,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
             ViewData["CAT_Centro_De_AcopioId"] = new SelectList(_context.CAT_Centros_De_Acopio, "Id", "CH_Nombre", tBL_Recibo_De_Reciclaje.CAT_Centro_De_AcopioId);
             ViewData["CAT_Tipo_De_MaterialId"] = new SelectList(_context.CAT_Tipos_De_Materiales, "Id", "CH_Descripcion", tBL_Recibo_De_Reciclaje.CAT_Tipo_De_MaterialId);
             ViewData["TBL_UsuarioId"] = new SelectList(_context.TBL_Usuarios, "Id", "CH_Nombre", tBL_Recibo_De_Reciclaje.TBL_UsuarioId);
+            
             return View(tBL_Recibo_De_Reciclaje);
         }
 
@@ -129,12 +147,18 @@ namespace ProyectoTiquiciaRecicla.Controllers
             ViewData["CAT_Centro_De_AcopioId"] = new SelectList(_context.CAT_Centros_De_Acopio, "Id", "CH_Nombre", tBL_Recibo_De_Reciclaje.CAT_Centro_De_AcopioId);
             ViewData["CAT_Tipo_De_MaterialId"] = new SelectList(_context.CAT_Tipos_De_Materiales, "Id", "CH_Descripcion", tBL_Recibo_De_Reciclaje.CAT_Tipo_De_MaterialId);
             ViewData["TBL_UsuarioId"] = new SelectList(_context.TBL_Usuarios, "Id", "CH_Nombre", tBL_Recibo_De_Reciclaje.TBL_UsuarioId);
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View(tBL_Recibo_De_Reciclaje);
         }
 
         // GET: TBL_Recibo_De_Reciclaje/Delete/5
         public async Task<IActionResult> Eliminar(int? id)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (id == null || _context.TBL_Recibos_De_Reciclaje == null)
             {
                 return NotFound();
@@ -149,7 +173,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
             {
                 return NotFound();
             }
-
+            
             return View(tBL_Recibo_De_Reciclaje);
         }
 
@@ -158,6 +182,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (_context.TBL_Recibos_De_Reciclaje == null)
             {
                 return Problem("Entity set 'AppDbContext.TBL_Recibos_De_Reciclaje'  is null.");
@@ -169,12 +196,16 @@ namespace ProyectoTiquiciaRecicla.Controllers
             }
             
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Mantenimiento));
         }
 
         private bool TBL_Recibo_De_ReciclajeExists(int id)
         {
-          return (_context.TBL_Recibos_De_Reciclaje?.Any(e => e.Id == id)).GetValueOrDefault();
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
+            return (_context.TBL_Recibos_De_Reciclaje?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

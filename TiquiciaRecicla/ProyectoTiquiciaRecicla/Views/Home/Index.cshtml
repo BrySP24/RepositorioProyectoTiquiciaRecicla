@@ -1,5 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Inicio";
+    // Obteniendo el Id del usuario de ViewData
+    int usuarioId = (int)ViewData["UsuarioId"];
+    if(usuarioId == 0){
+        ViewBag.ShowSidebar = false;
+    }else{
+        ViewBag.ShowSidebar = true;
+    }
 }
 @*--!agregar cambios de index--!*@
 <div class="card-center">

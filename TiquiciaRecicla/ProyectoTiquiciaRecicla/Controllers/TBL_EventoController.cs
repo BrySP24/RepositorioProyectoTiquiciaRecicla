@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoTiquiciaRecicla.Data;
 using ProyectoTiquiciaRecicla.Models;
+using static ProyectoTiquiciaRecicla.Controllers.HomeController;
 
 namespace ProyectoTiquiciaRecicla.Controllers
 {
@@ -23,12 +24,18 @@ namespace ProyectoTiquiciaRecicla.Controllers
         public async Task<IActionResult> Mantenimiento()
         {
             var appDbContext = _context.TBL_Eventos.Include(t => t.CAT_Empresas_Recolectoras);
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View(await appDbContext.ToListAsync());
         }
 
         // GET: TBL_Evento/Details/5
         public async Task<IActionResult> Detalles(int? id)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (id == null || _context.TBL_Eventos == null)
             {
                 return NotFound();
@@ -49,6 +56,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
         public IActionResult Crear()
         {
             ViewData["CAT_Empresa_RecolectoraId"] = new SelectList(_context.CAT_Empresas_Recolectoras, "Id", "CH_Nombre");
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View();
         }
 
@@ -66,6 +76,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
                 return RedirectToAction(nameof(Mantenimiento));
             }
             ViewData["CAT_Empresa_RecolectoraId"] = new SelectList(_context.CAT_Empresas_Recolectoras, "Id", "CH_Nombre", tBL_Evento.CAT_Empresa_RecolectoraId);
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View(tBL_Evento);
         }
 
@@ -83,6 +96,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
                 return NotFound();
             }
             ViewData["CAT_Empresa_RecolectoraId"] = new SelectList(_context.CAT_Empresas_Recolectoras, "Id", "CH_Nombre", tBL_Evento.CAT_Empresa_RecolectoraId);
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View(tBL_Evento);
         }
 
@@ -119,6 +135,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
                 return RedirectToAction(nameof(Mantenimiento));
             }
             ViewData["CAT_Empresa_RecolectoraId"] = new SelectList(_context.CAT_Empresas_Recolectoras, "Id", "CH_Nombre", tBL_Evento.CAT_Empresa_RecolectoraId);
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View(tBL_Evento);
         }
 
@@ -137,7 +156,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
             {
                 return NotFound();
             }
-
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View(tBL_Evento);
         }
 
@@ -157,12 +178,18 @@ namespace ProyectoTiquiciaRecicla.Controllers
             }
             
             await _context.SaveChangesAsync();
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return RedirectToAction(nameof(Mantenimiento));
         }
 
         private bool TBL_EventoExists(int id)
         {
-          return (_context.TBL_Eventos?.Any(e => e.Id == id)).GetValueOrDefault();
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
+            return (_context.TBL_Eventos?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

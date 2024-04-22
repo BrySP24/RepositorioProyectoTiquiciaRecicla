@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoTiquiciaRecicla.Data;
 using ProyectoTiquiciaRecicla.Models;
+using static ProyectoTiquiciaRecicla.Controllers.HomeController;
 
 namespace ProyectoTiquiciaRecicla.Controllers
 {
@@ -22,7 +23,10 @@ namespace ProyectoTiquiciaRecicla.Controllers
         // GET: CAT_Empresa_Recolectora
         public async Task<IActionResult> Mantenimiento()
         {
-              return _context.CAT_Empresas_Recolectoras != null ? 
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
+            return _context.CAT_Empresas_Recolectoras != null ? 
                           View(await _context.CAT_Empresas_Recolectoras.ToListAsync()) :
                           Problem("Entity set 'AppDbContext.CAT_Empresas_Recolectoras'  is null.");
         }
@@ -30,6 +34,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
         // GET: CAT_Empresa_Recolectora/Details/5
         public async Task<IActionResult> Detalles(int? id)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (id == null || _context.CAT_Empresas_Recolectoras == null)
             {
                 return NotFound();
@@ -41,13 +48,16 @@ namespace ProyectoTiquiciaRecicla.Controllers
             {
                 return NotFound();
             }
-
+            
             return View(cAT_Empresa_Recolectora);
         }
 
         // GET: CAT_Empresa_Recolectora/Create
         public IActionResult Crear()
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View();
         }
 
@@ -58,18 +68,25 @@ namespace ProyectoTiquiciaRecicla.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Crear([Bind("Id,CH_Nombre,CH_Direccion,DEC_Latitud,DEC_Longitud,CH_Horario,CH_Telefono,CH_Correo_Electronico")] CAT_Empresa_Recolectora cAT_Empresa_Recolectora)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (ModelState.IsValid)
             {
                 _context.Add(cAT_Empresa_Recolectora);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Mantenimiento));
             }
+            
             return View(cAT_Empresa_Recolectora);
         }
 
         // GET: CAT_Empresa_Recolectora/Edit/5
         public async Task<IActionResult> Editar(int? id)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (id == null || _context.CAT_Empresas_Recolectoras == null)
             {
                 return NotFound();
@@ -80,6 +97,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
             {
                 return NotFound();
             }
+            
             return View(cAT_Empresa_Recolectora);
         }
 
@@ -90,6 +108,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Editar(int id, [Bind("Id,CH_Nombre,CH_Direccion,DEC_Latitud,DEC_Longitud,CH_Horario,CH_Telefono,CH_Correo_Electronico")] CAT_Empresa_Recolectora cAT_Empresa_Recolectora)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (id != cAT_Empresa_Recolectora.Id)
             {
                 return NotFound();
@@ -115,12 +136,16 @@ namespace ProyectoTiquiciaRecicla.Controllers
                 }
                 return RedirectToAction(nameof(Mantenimiento));
             }
+            
             return View(cAT_Empresa_Recolectora);
         }
 
         // GET: CAT_Empresa_Recolectora/Delete/5
         public async Task<IActionResult> Eliminar(int? id)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (id == null || _context.CAT_Empresas_Recolectoras == null)
             {
                 return NotFound();
@@ -132,7 +157,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
             {
                 return NotFound();
             }
-
+            
             return View(cAT_Empresa_Recolectora);
         }
 
@@ -141,6 +166,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (_context.CAT_Empresas_Recolectoras == null)
             {
                 return Problem("Entity set 'AppDbContext.CAT_Empresas_Recolectoras'  is null.");
@@ -152,12 +180,16 @@ namespace ProyectoTiquiciaRecicla.Controllers
             }
             
             await _context.SaveChangesAsync();
+            
             return RedirectToAction(nameof(Mantenimiento));
         }
 
         private bool CAT_Empresa_RecolectoraExists(int id)
         {
-          return (_context.CAT_Empresas_Recolectoras?.Any(e => e.Id == id)).GetValueOrDefault();
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
+            return (_context.CAT_Empresas_Recolectoras?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

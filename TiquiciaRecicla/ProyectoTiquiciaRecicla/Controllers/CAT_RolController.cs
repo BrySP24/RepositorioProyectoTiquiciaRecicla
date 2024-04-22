@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoTiquiciaRecicla.Data;
 using ProyectoTiquiciaRecicla.Models;
+using static ProyectoTiquiciaRecicla.Controllers.HomeController;
 
 namespace ProyectoTiquiciaRecicla.Controllers
 {
@@ -22,6 +23,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
         // GET: CAT_Rol
         public async Task<IActionResult> Index()
         {
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return _context.CAT_Roles != null ?
                         View(await _context.CAT_Roles.ToListAsync()) :
                         Problem("Entity set 'AppDbContext.CAT_Roles'  is null.");
@@ -41,13 +43,14 @@ namespace ProyectoTiquiciaRecicla.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View(cAT_Rol);
         }
 
         // GET: CAT_Rol/Create
         public IActionResult Create()
         {
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View();
         }
 
@@ -64,6 +67,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View(cAT_Rol);
         }
 
@@ -80,6 +84,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
             {
                 return NotFound();
             }
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View(cAT_Rol);
         }
 
@@ -115,6 +120,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View(cAT_Rol);
         }
 
@@ -132,7 +138,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View(cAT_Rol);
         }
 
@@ -152,11 +158,13 @@ namespace ProyectoTiquiciaRecicla.Controllers
             }
 
             await _context.SaveChangesAsync();
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return RedirectToAction(nameof(Index));
         }
 
         private bool CAT_RolExists(int id)
         {
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return (_context.CAT_Roles?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
