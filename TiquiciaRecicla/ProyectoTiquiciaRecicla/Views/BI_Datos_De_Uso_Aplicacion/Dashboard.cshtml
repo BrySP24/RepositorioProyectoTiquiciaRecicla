@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+<br />
+<h1 style="text-align: center">Estadísticas de uso de la aplicación</h1>
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <h5 style="text-align:center">Popularidad y retención mensual</h5>
+        </div>
+        <div class="col">
+            <h5 style="text-align:center">Sesiones por provincia</h5>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-4">
+            @await Component.InvokeAsync("DatosKPIsUsosMensuales")
+        </div>
+        <div class="col">
+            @await Component.InvokeAsync("DatosUsosProvincias")
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col">
+            <h5 style="text-align:center">Registro de inicios de sesión</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            @await Component.InvokeAsync("DatosSesionesDeUsuario")
+        </div>
+    </div>
+</div>

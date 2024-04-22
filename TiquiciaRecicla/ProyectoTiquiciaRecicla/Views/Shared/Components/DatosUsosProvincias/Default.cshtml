@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ProyectoTiquiciaRecicla.Models.BI_UsosProvincias>
+
+<div id="geochart"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+    google.charts.load('46', {
+        'packages': ['geochart'],
+    });
+    google.charts.setOnLoadCallback(drawRegionsMap);
+
+    function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+            ['Provincia', 'Peso Total'],
+    @foreach (var item in Model)
+    {
+        @Html.Raw("['" + item.Nombre + "'," + item.Sesiones.ToString().Replace(',', '.') + "],")
+    }
+            ]);
+
+        var options = {
+            region: 'CR',
+            displaymode: 'regions',
+            resolution: 'provinces',
+            height: 280,
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('geochart'));
+
+        chart.draw(data, options);
+    }
+
+</script>

@@ -3,10 +3,8 @@ using static ProyectoTiquiciaRecicla.Controllers.HomeController;
 
 namespace ProyectoTiquiciaRecicla.Controllers
 {
-    public class BI_Datos_De_Reciclaje : Controller
+    public class BI_Datos_De_Uso_Aplicacion : Controller
     {
-
-        // GET: BI_Datos_De_Reciclaje
         public IActionResult Dashboard()
         {
             int usuarioRol = VariablesGlobales.UsuarioRol;
@@ -14,6 +12,5 @@ namespace ProyectoTiquiciaRecicla.Controllers
             ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View();
         }
-
     }
 }
