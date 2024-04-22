@@ -9,6 +9,7 @@ using Microsoft.Win32;
 using ProyectoTiquiciaRecicla.Data;
 using ProyectoTiquiciaRecicla.Models;
 using ProyectoTiquiciaRecicla.Utilidades;
+using static ProyectoTiquiciaRecicla.Controllers.HomeController;
 
 namespace ProyectoTiquiciaRecicla.Controllers
 {
@@ -26,13 +27,18 @@ namespace ProyectoTiquiciaRecicla.Controllers
         {
             var appDbContext = _context.TBL_Usuarios.Include(t => t.CAT_Provincias)
                                                     .Include(r => r.CAT_Roles);
-
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View(await appDbContext.ToListAsync());
         }
         
         // GET: TBL_Usuario/Details/5
         public async Task<IActionResult> Detalles(int? id)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (id == null || _context.TBL_Usuarios == null)
             {
                 return NotFound();
@@ -46,7 +52,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
             {
                 return NotFound();
             }
-
+            
             return View(tBL_Usuario);
         }
 
@@ -55,6 +61,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
         {
             ViewData["CAT_ProvinciaId"] = new SelectList(_context.CAT_Provincias, "Id", "CH_Nombre");
             ViewData["CAT_RolId"] = new SelectList(_context.CAT_Roles, "Id", "CH_Nombre");
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View();
         }
 
@@ -65,6 +74,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Crear([Bind("Id,CH_Nombre,CH_Apellido_1,CH_apellido_2,CH_Correo,CH_Clave,CH_Telefono,CH_Direccion,CAT_ProvinciaId,CAT_RolId")] TBL_Usuario tBL_Usuario)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (ModelState.IsValid)
             {
                 // Hash de la contraseña antes de guardarla
@@ -75,12 +87,16 @@ namespace ProyectoTiquiciaRecicla.Controllers
                 return RedirectToAction(nameof(Mantenimiento));
             }
             ViewData["CAT_ProvinciaId"] = new SelectList(_context.CAT_Provincias, "Id", "CH_Nombre", tBL_Usuario.CAT_ProvinciaId);
+            
             return View(tBL_Usuario);
         }
 
         // GET: TBL_Usuario/Edit/5
         public async Task<IActionResult> Editar(int? id)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (id == null || _context.TBL_Usuarios == null)
             {
                 return NotFound();
@@ -93,6 +109,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
             }
             ViewData["CAT_ProvinciaId"] = new SelectList(_context.CAT_Provincias, "Id", "CH_Nombre", tBL_Usuario.CAT_ProvinciaId);
             ViewData["CAT_RolId"] = new SelectList(_context.CAT_Roles, "Id", "CH_Nombre", tBL_Usuario.CAT_RolId);
+            
             return View(tBL_Usuario);
         }
 
@@ -103,6 +120,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Editar(int id, [Bind("Id,CH_Nombre,CH_Apellido_1,CH_apellido_2,CH_Correo,CH_Clave,CH_Telefono,CH_Direccion,CAT_ProvinciaId,CAT_RolId")] TBL_Usuario tBL_Usuario)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (id != tBL_Usuario.Id)
             {
                 return NotFound();
@@ -132,12 +152,16 @@ namespace ProyectoTiquiciaRecicla.Controllers
                 return RedirectToAction(nameof(Mantenimiento));
             }
             ViewData["CAT_ProvinciaId"] = new SelectList(_context.CAT_Provincias, "Id", "CH_Nombre", tBL_Usuario.CAT_ProvinciaId);
+            
             return View(tBL_Usuario);
         }
 
         // GET: TBL_Usuario/Delete/5
         public async Task<IActionResult> Eliminar(int? id)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (id == null || _context.TBL_Usuarios == null)
             {
                 return NotFound();
@@ -151,7 +175,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
             {
                 return NotFound();
             }
-
+            
             return View(tBL_Usuario);
         }
 
@@ -160,6 +184,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             if (_context.TBL_Usuarios == null)
             {
                 return Problem("Entity set 'AppDbContext.TBL_Usuarios'  is null.");
@@ -171,12 +198,16 @@ namespace ProyectoTiquiciaRecicla.Controllers
             }
             
             await _context.SaveChangesAsync();
+            
             return RedirectToAction(nameof(Mantenimiento));
         }
 
         private bool TBL_UsuarioExists(int id)
         {
-          return (_context.TBL_Usuarios?.Any(e => e.Id == id)).GetValueOrDefault();
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
+            return (_context.TBL_Usuarios?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

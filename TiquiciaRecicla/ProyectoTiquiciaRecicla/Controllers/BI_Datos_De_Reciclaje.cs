@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 using ProyectoTiquiciaRecicla.Data;
 using ProyectoTiquiciaRecicla.Models;
+using static ProyectoTiquiciaRecicla.Controllers.HomeController;
 
 namespace ProyectoTiquiciaRecicla.Controllers
 {
@@ -24,13 +25,19 @@ namespace ProyectoTiquiciaRecicla.Controllers
         public async Task<IActionResult> Dashboard()
         {
             var appDbContext = _context.TBL_Recibos_De_Reciclaje.Include(t => t.CAT_Centros_De_Acopio).Include(t => t.CAT_Tipos_De_Materiales).Include(t => t.TBL_Usuarios);
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
             return View(await appDbContext.ToListAsync());
         }
 
 
         private bool TBL_Recibo_De_ReciclajeExists(int id)
         {
-          return (_context.TBL_Recibos_De_Reciclaje?.Any(e => e.Id == id)).GetValueOrDefault();
+            int usuarioRol = VariablesGlobales.UsuarioRol;
+            ViewData["usuarioRol"] = usuarioRol;
+            ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
+            return (_context.TBL_Recibos_De_Reciclaje?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -1,11 +1,24 @@
-﻿
-<a class="nav-link text-dark" id="register" href="@Url.Action("Registro", "Sesion", new { area = "Identity" })">
-    <i class="bi bi-person-fill-lock"></i> Registrarse
-</a>
+﻿@{
+    // Obtener el valor de UsuarioRol de ViewData
+    int usuarioSesion = ViewData["UsuarioSesion"] != null ? (int)ViewData["UsuarioSesion"] : 0;
+    int usuarioRol = ViewData["UsuarioRol"] != null ? (int)ViewData["UsuarioRol"] : 0;
+}
 
-<a class="nav-link text-dark" id="login" href="@Url.Action("Inicio_Sesion", "Sesion", new { area = "Identity" })">
-    <i class="bi bi-person-fill-lock"></i> Iniciar sesión
-</a>
+@if (usuarioSesion == 0 || usuarioRol == 0)
+{
+    <a class="nav-link text-dark" id="register" href="@Url.Action("Registro", "Sesion", new { area = "Identity" })">
+        <i class="bi bi-person-fill-lock"></i> Registrarse
+    </a>
+
+    <a class="nav-link text-dark" id="login" href="@Url.Action("Inicio_Sesion", "Sesion", new { area = "Identity" })">
+        <i class="bi bi-person-fill-lock"></i> Iniciar sesión
+    </a>
+}else
+{
+    <a class="nav-link text-dark" id="login" href="@Url.Action("Cerrar_Sesion", "Sesion", new { area = "Identity" })">
+        <i class="bi bi-person-fill-lock"></i> Cerrar Sesión
+    </a>
+}
 
 
 

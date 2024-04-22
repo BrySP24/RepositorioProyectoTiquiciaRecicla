@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using ProyectoTiquiciaRecicla.Data;
 using ProyectoTiquiciaRecicla.Models;
+using ProyectoTiquiciaRecicla.Utilidades;
 
 namespace ProyectoTiquiciaRecicla.Controllers
 {
@@ -19,21 +23,14 @@ namespace ProyectoTiquiciaRecicla.Controllers
             _context = context;
         }
 
-        // GET: Sesion
-        public async Task<IActionResult> Index()
-        {
-            var appDbContext = _context.TBL_Usuarios.Include(t => t.CAT_Provincias);
-            return View(await appDbContext.ToListAsync());
-        }
-
-        // GET: Sesion/Create
+        // GET: Registro/Create
         public IActionResult Registro()
         {
             ViewData["CAT_ProvinciaId"] = new SelectList(_context.CAT_Provincias, "Id", "CH_Nombre");
             return View();
         }
 
-        // POST: Sesion/Create
+        // POST: Registro/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -42,41 +39,63 @@ namespace ProyectoTiquiciaRecicla.Controllers
         {
             if (ModelState.IsValid)
             {
+                tBL_Usuario.CAT_RolId = 2;
+
+                // Hash de la contraseña antes de guardarla
+                tBL_Usuario.CH_Clave = PasswordHasher.HashPassword(tBL_Usuario.CH_Clave);
+
                 _context.Add(tBL_Usuario);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Inicio_Sesion));
             }
             ViewData["CAT_ProvinciaId"] = new SelectList(_context.CAT_Provincias, "Id", "CH_Nombre", tBL_Usuario.CAT_ProvinciaId);
             return View(tBL_Usuario);
         }
 
-        // GET: Sesion/Create
+        // GET: Sesion/Login
         public IActionResult Inicio_Sesion()
         {
-            ViewData["CAT_ProvinciaId"] = new SelectList(_context.CAT_Provincias, "Id", "CH_Nombre");
             return View();
         }
 
-        // POST: Sesion/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Inicio_Sesion([Bind("Id,CH_Nombre,CH_Apellido_1,CH_apellido_2,CH_Correo,CH_Clave,CH_Telefono,CH_Direccion,CAT_ProvinciaId")] TBL_Usuario tBL_Usuario)
+        public async Task<IActionResult> Inicio_Sesion(TBL_Usuario usuario)
         {
-            if (ModelState.IsValid)
+            // Busca el usuario en la base de datos basado en el correo electrónico
+            var usuarioEncontrado = _context.TBL_Usuarios.SingleOrDefault(u => u.CH_Correo == usuario.CH_Correo);
+
+            if (usuarioEncontrado != null)
             {
-                _context.Add(tBL_Usuario);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var hashedPassword = PasswordHasher.HashPassword(usuario.CH_Clave);
+
+                if (usuarioEncontrado.CH_Clave == hashedPassword)
+                {
+                    // Autenticación exitosa
+                    HomeController.VariablesGlobales.UsuarioId = usuarioEncontrado.Id;
+                    HomeController.VariablesGlobales.UsuarioSesion = 1;
+                    HomeController.VariablesGlobales.UsuarioRol = usuarioEncontrado.CAT_RolId;
+                    ViewBag.UsuarioSesion = 1; // Establecer UsuarioSesion en ViewBag
+                    return RedirectToAction("Index", "Home"); // Redirigir al usuario a la página de inicio después de iniciar sesión.
+                }
             }
-            ViewData["CAT_ProvinciaId"] = new SelectList(_context.CAT_Provincias, "Id", "CH_Nombre", tBL_Usuario.CAT_ProvinciaId);
-            return View(tBL_Usuario);
+
+            // Si el usuario no existe o la contraseña no coincide, muestra un mensaje de error
+            ModelState.AddModelError(string.Empty, "Correo electrónico o contraseña incorrectos");
+            return View();
         }
 
-        private bool TBL_UsuarioExists(int id)
+        public async Task<IActionResult> Cerrar_Sesion()
         {
-          return (_context.TBL_Usuarios?.Any(e => e.Id == id)).GetValueOrDefault();
+            // Cerrar la sesión del usuario
+            HomeController.VariablesGlobales.UsuarioSesion = 0;
+            HomeController.VariablesGlobales.UsuarioId = 0;
+            HomeController.VariablesGlobales.UsuarioRol = 0;
+            ViewBag.UsuarioSesion = 0; // Establecer UsuarioSesion en ViewBag
+
+            // Redirigir al usuario a la página de inicio o a donde desees después de cerrar sesión
+            return RedirectToAction("Index", "Home");
         }
     }
+
 }
