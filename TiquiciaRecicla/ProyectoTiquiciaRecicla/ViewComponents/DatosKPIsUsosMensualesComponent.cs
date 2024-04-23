@@ -18,8 +18,8 @@ namespace ProyectoTiquiciaRecicla.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var resultado1 = from hs in _context.TBL_Historicos_Sesiones
-                                    where hs.DTI_Fecha_Hora_Inicio.Month == _context.TBL_Historicos_Sesiones.Max(x => x.DTI_Fecha_Hora_Inicio.Month) &&
-                                          hs.DTI_Fecha_Hora_Inicio.Year == _context.TBL_Historicos_Sesiones.Max(x => x.DTI_Fecha_Hora_Inicio.Year)
+                                    where hs.DTI_Fecha_Hora_Inicio.Month == _context.TBL_Historicos_Sesiones.Max(x => x.DTI_Fecha_Hora_Inicio).Month &&
+                                          hs.DTI_Fecha_Hora_Inicio.Year == _context.TBL_Historicos_Sesiones.Max(x => x.DTI_Fecha_Hora_Inicio).Year
                                     select new
                                     {
                                         AverageDuration = EF.Functions.DateDiffMinute(hs.DTI_Fecha_Hora_Inicio, hs.DIT_Fecha_Hora_Cierre),
@@ -34,8 +34,8 @@ namespace ProyectoTiquiciaRecicla.ViewComponents
                                     };
 
             var resultado2 = from hs in _context.TBL_Historicos_Sesiones
-                                     where hs.DTI_Fecha_Hora_Inicio.Month == _context.TBL_Historicos_Sesiones.Max(x => x.DTI_Fecha_Hora_Inicio.Month) - 1 &&
-                                           hs.DTI_Fecha_Hora_Inicio.Year == _context.TBL_Historicos_Sesiones.Max(x => x.DTI_Fecha_Hora_Inicio.Year)
+                                     where hs.DTI_Fecha_Hora_Inicio.Month == _context.TBL_Historicos_Sesiones.Max(x => x.DTI_Fecha_Hora_Inicio).Month - 1 &&
+                                           hs.DTI_Fecha_Hora_Inicio.Year == _context.TBL_Historicos_Sesiones.Max(x => x.DTI_Fecha_Hora_Inicio).Year
                                      select new
                                      {
                                          AverageDuration = EF.Functions.DateDiffMinute(hs.DTI_Fecha_Hora_Inicio, hs.DIT_Fecha_Hora_Cierre),
