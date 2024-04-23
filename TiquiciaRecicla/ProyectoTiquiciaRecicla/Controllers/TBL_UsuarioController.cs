@@ -87,7 +87,8 @@ namespace ProyectoTiquiciaRecicla.Controllers
                 return RedirectToAction(nameof(Mantenimiento));
             }
             ViewData["CAT_ProvinciaId"] = new SelectList(_context.CAT_Provincias, "Id", "CH_Nombre", tBL_Usuario.CAT_ProvinciaId);
-            
+            ViewData["CAT_RolId"] = new SelectList(_context.CAT_Roles, "Id", "CH_Nombre", tBL_Usuario.CAT_RolId);
+
             return View(tBL_Usuario);
         }
 
@@ -123,6 +124,7 @@ namespace ProyectoTiquiciaRecicla.Controllers
             int usuarioRol = VariablesGlobales.UsuarioRol;
             ViewData["usuarioRol"] = usuarioRol;
             ViewBag.UsuarioSesion = VariablesGlobales.UsuarioSesion;
+            ModelState.Remove("CH_Clave");
             if (id != tBL_Usuario.Id)
             {
                 return NotFound();
@@ -132,10 +134,9 @@ namespace ProyectoTiquiciaRecicla.Controllers
             {
                 try
                 {
-                    // Hash de la contraseña antes de guardarla
-                    tBL_Usuario.CH_Clave = PasswordHasher.HashPassword(tBL_Usuario.CH_Clave);
-
-                    _context.Update(tBL_Usuario);
+                    _context.TBL_Usuarios
+                        .Where(u => u.Id == tBL_Usuario.Id)
+                        .ExecuteUpdate(s => s.SetProperty(u => u.CAT_RolId, tBL_Usuario.CAT_RolId));
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -152,7 +153,8 @@ namespace ProyectoTiquiciaRecicla.Controllers
                 return RedirectToAction(nameof(Mantenimiento));
             }
             ViewData["CAT_ProvinciaId"] = new SelectList(_context.CAT_Provincias, "Id", "CH_Nombre", tBL_Usuario.CAT_ProvinciaId);
-            
+            ViewData["CAT_RolId"] = new SelectList(_context.CAT_Roles, "Id", "CH_Nombre", tBL_Usuario.CAT_RolId);
+
             return View(tBL_Usuario);
         }
 
