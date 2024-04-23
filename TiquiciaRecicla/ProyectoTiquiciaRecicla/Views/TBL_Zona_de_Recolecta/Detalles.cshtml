@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int usuarioRol = (int)ViewData["UsuarioRol"];
 }
 
 @functions {
@@ -13,7 +15,7 @@
 }
 <div class="mx-0">
     <br />
-    <h2><a asp-action="Mantenimiento" class="btn-outline-primary"><i class="bi bi-chevron-left mx-2 "></i></a><i class="bi bi-pin-map"></i> Detalles de zona de recilecta</h2>
+    <h2><a asp-action="Mantenimiento" class="btn-outline-primary"><i class="bi bi-chevron-left mx-2 "></i></a><i class="bi bi-pin-map"></i> Detalles de zona de recolecta</h2>
     <hr />
 </div>
 <div>  
@@ -61,26 +63,15 @@
             @Html.DisplayFor(model => model.CAT_Centros_De_Acopio.CH_Nombre)
         </dd>
         <div>
-            <h4>Detalles de la Zona de Recolecta</h4>
-            <hr />
-            <dl class="row">
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.CH_Direccion)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.CH_Direccion)
-                </dd>
-                
-            </dl>
-            <div>
-
-                <a href="https://www.google.com/maps?q=@(ConvertirCoordenada(Model.DEC_Latitud)),@(ConvertirCoordenada(Model.DEC_Longitud))" target="_blank">Ver ubicación en Google Maps</a>
-
-            </div>
+            <a href="https://www.google.com/maps?q=@(ConvertirCoordenada(Model.DEC_Latitud)),@(ConvertirCoordenada(Model.DEC_Longitud))" target="_blank">Ver ubicación en Google Maps</a>
         </div>
+        
   </div>
     </dl>
 </div>
-<div>
-    <a asp-action="Editar" asp-route-id="@Model?.Id" class="btn btn-primary "><i class="bi bi-pencil"></i> Editar</a>
-</div>
+@if (usuarioRol == 1)
+{
+    <div>
+        <a asp-action="Editar" asp-route-id="@Model?.Id" class="btn btn-primary "><i class="bi bi-pencil"></i> Editar</a>
+    </div>
+}

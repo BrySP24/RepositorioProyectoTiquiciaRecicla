@@ -3,11 +3,13 @@
 @{
     ViewData["Title"] = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int usuarioRol = (int)ViewData["UsuarioRol"];
 }
 
 <div class="mx-0">
     <br />
-    <h2><a asp-action="Mantenimiento" class="btn-outline-primary"><i class="bi bi-chevron-left mx-2 "></i></a><i class="bi bi-box-seam"></i> Detalles de provincia</h2>
+    <h2><a asp-action="Mantenimiento" class="btn-outline-primary"><i class="bi bi-chevron-left mx-2 "></i></a><i class="bi bi-box-seam"></i> Detalles de tipo de material</h2>
     <hr />
 </div>
 
@@ -33,6 +35,9 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Editar" asp-route-id="@Model?.Id" class="btn btn-primary "><i class="bi bi-pencil"></i> Editar</a>
-</div>
+@if (usuarioRol == 1)
+{
+    <div>
+        <a asp-action="Editar" asp-route-id="@Model?.Id" class="btn btn-primary "><i class="bi bi-pencil"></i> Editar</a>
+    </div>
+}
