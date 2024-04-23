@@ -7,6 +7,14 @@
 
     int usuarioRol = (int)ViewData["UsuarioRol"];
 }
+
+@functions {
+    string ConvertirCoordenada(double coordenada)
+    {
+        return coordenada.ToString().Replace(',', '.');
+    }
+}
+
 <div class="mx-1">
     <br />
     <h2><i class="bi bi-pin-map"></i> Mantenimiento de zonas de recolecta</h2>
@@ -29,10 +37,7 @@
                 @Html.DisplayNameFor(model => model.DEC_Latitud)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DEC_Longitud)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DTI_Inicio)
+                Ubicación
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DTI_Fin)
@@ -55,10 +60,7 @@
                 @Html.DisplayFor(modelItem => item.CH_Direccion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DEC_Latitud)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DEC_Longitud)
+                    <a href="https://www.google.com/maps?q=@(ConvertirCoordenada(item.DEC_Latitud)),@(ConvertirCoordenada(item.DEC_Longitud))" target="_blank">Google Maps</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DTI_Inicio)
