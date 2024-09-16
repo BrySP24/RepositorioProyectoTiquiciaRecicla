@@ -28,5 +28,11 @@
 
 ###
 <br>
+<div align="left">
 <a href="[http://www.linkedin.com/in/bryansalcedo24](https://github.com/BrySP24/RepositorioProyectoTiquiciaRecicla)" target="_blank">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" height="40" alt="github logo"  />
+  </a>
+</div>
+
+
 
