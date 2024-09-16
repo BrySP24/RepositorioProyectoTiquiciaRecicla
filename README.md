@@ -25,7 +25,7 @@
 
 ###
 <div align="left">
-<a href="[http://www.linkedin.com/in/bryansalcedo24](https://github.com/BrySP24/RepositorioProyectoTiquiciaRecicla" target="_blank">
+<a href="https://github.com/BrySP24/RepositorioProyectoTiquiciaRecicla" target="_blank">
 <p> Proyecto </p>
   </a>
 </div>
