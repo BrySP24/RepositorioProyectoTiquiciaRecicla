@@ -28,5 +28,5 @@
 
 ###
 <br>
-<h1 align="left">
-https://github.com/BrySP24/RepositorioProyectoTiquiciaRecicla</h1>
+<link align="left">
+https://github.com/BrySP24/RepositorioProyectoTiquiciaRecicla</link>
