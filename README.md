@@ -1,4 +1,6 @@
-<h1 align="left">Tiquicia Recicla es un proyecto de colaboración de la Universidad Hispanoamericana, el cual se trata de una página web para la gestión de materiales de reciclaje con mantenimientos y uso de roles, programado en Asp.net Core 7, C#, HTML, CSS, páginas Razor, Bootstrap, patrón de diseño MVC,con uso de versiones en github, vinculado a una base de datos de SQL Server.</h1>
+<h1 align="left">Tiquicia Recicla es un proyecto de colaboración de la Universidad Hispanoamericana, el cual se trata de una página web para la gestión de materiales de reciclaje con mantenimientos y uso de roles, programado en Asp.net Core 7, C#, HTML, CSS, páginas Razor, Bootstrap, patrón de diseño MVC,con uso de versiones en github, vinculado a una base de datos de SQL Server.
+https://github.com/BrySP24/RepositorioProyectoTiquiciaRecicla
+</h1>
 
 ###
 
@@ -25,5 +27,5 @@
   <img width="12" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" height="40" alt="microsoftsqlserver logo"  />
 </div>
-https://github.com/BrySP24/RepositorioProyectoTiquiciaRecicla
+
 ###
