@@ -23,12 +23,6 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" height="40" alt="github logo"  />
 </div>
 
-###
-<div align="left">
-<a href="https://github.com/BrySP24/RepositorioProyectoTiquiciaRecicla" target="_blank">
-<p> Proyecto </p>
-  </a>
-</div>
 
 
 
