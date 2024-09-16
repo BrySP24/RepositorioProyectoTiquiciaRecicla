@@ -28,4 +28,5 @@
 
 ###
 <br>
-<link> https://github.com/BrySP24/RepositorioProyectoTiquiciaRecicla</link>
+<a href="[http://www.linkedin.com/in/bryansalcedo24](https://github.com/BrySP24/RepositorioProyectoTiquiciaRecicla)" target="_blank">
+
